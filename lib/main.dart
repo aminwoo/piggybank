@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_simple_calculator/flutter_simple_calculator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,10 +37,97 @@ class MyApp extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.blue,
-            title: Text("Stonks"),
+            title: Text("Assets"),
+          ),
+          body: const TabBarView(
+            children: <Widget>[
+              Center(
+                child: SimpleCalculator(
+                  value: 0,
+                  hideExpression: false,
+                  theme: CalculatorThemeData(
+                    displayColor: Colors.white,
+                    displayStyle: TextStyle(fontSize: 80, color: Colors.black),
+                    operatorColor: Colors.white,
+                    operatorStyle: TextStyle(fontSize: 30, color: Colors.black),
+                  ),
+                ),
+              ),
+              Center(
+                child: Text("It's rainy here"),
+              ),
+              Center(
+                child: Text("It's sunny here"),
+              ),
+              Center(
+                child: Text("Opitns's sunny here"),
+              ),
+            ],
           ),
           bottomNavigationBar: Menu(),
         )
+      ),
+    );
+  }
+}
+
+
+// Define a custom Form widget.
+class MyCustomForm extends StatefulWidget {
+  const MyCustomForm({super.key});
+
+  @override
+  State<MyCustomForm> createState() => _MyCustomFormState();
+}
+
+// Define a corresponding State class.
+// This class holds data related to the Form.
+class _MyCustomFormState extends State<MyCustomForm> {
+  // Create a text controller and use it to retrieve the current value
+  // of the TextField.
+  final myController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Start listening to changes.
+    myController.addListener(_printLatestValue);
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the widget tree.
+    // This also removes the _printLatestValue listener.
+    myController.dispose();
+    super.dispose();
+  }
+
+  void _printLatestValue() {
+    final text = myController.text;
+    print('Second text field: $text (${text.characters.length})');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Retrieve Text Input'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            TextField(
+              onChanged: (text) {
+                print('First text field: $text (${text.characters.length})');
+              },
+            ),
+            TextField(
+              controller: myController,
+            ),
+          ],
+        ),
       ),
     );
   }
