@@ -163,7 +163,7 @@ class _TransactionFormState extends State<TransactionForm> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
-              child: InputDatePickerFormField(fieldLabelText: 'Date', firstDate: DateTime(2015, 8), lastDate: DateTime(2015, 8), ),
+              child: InputDatePickerFormField(fieldLabelText: 'Date', initialDate: DateTime.now(), firstDate: DateTime(2015, 1), lastDate: DateTime(2100), ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
