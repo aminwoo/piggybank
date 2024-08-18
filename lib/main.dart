@@ -37,30 +37,21 @@ class MyApp extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.blue,
-            title: Text("Assets"),
+            title: const Text("Piggy Bank"),
           ),
           body: const TabBarView(
             children: <Widget>[
               Center(
-                child: SimpleCalculator(
-                  value: 0,
-                  hideExpression: false,
-                  theme: CalculatorThemeData(
-                    displayColor: Colors.white,
-                    displayStyle: TextStyle(fontSize: 80, color: Colors.black),
-                    operatorColor: Colors.white,
-                    operatorStyle: TextStyle(fontSize: 30, color: Colors.black),
-                  ),
-                ),
+                child: TransactionForm(),
               ),
               Center(
-                child: Text("It's rainy here"),
+                child: Text("Trends"),
               ),
               Center(
-                child: Text("It's sunny here"),
+                child: Balance(),
               ),
               Center(
-                child: Text("Opitns's sunny here"),
+                child: Text("Options"),
               ),
             ],
           ),
@@ -73,16 +64,16 @@ class MyApp extends StatelessWidget {
 
 
 // Define a custom Form widget.
-class MyCustomForm extends StatefulWidget {
-  const MyCustomForm({super.key});
+class TransactionForm extends StatefulWidget {
+  const TransactionForm({super.key});
 
   @override
-  State<MyCustomForm> createState() => _MyCustomFormState();
+  State<TransactionForm> createState() => _TransactionFormState();
 }
 
 // Define a corresponding State class.
 // This class holds data related to the Form.
-class _MyCustomFormState extends State<MyCustomForm> {
+class _TransactionFormState extends State<TransactionForm> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
   final myController = TextEditingController();
@@ -112,20 +103,110 @@ class _MyCustomFormState extends State<MyCustomForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Retrieve Text Input'),
+        title: const Text('Add New Transaction'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () => {},
+        tooltip: 'Add new item',
+        child: const Icon(Icons.add),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            TextField(
-              onChanged: (text) {
-                print('First text field: $text (${text.characters.length})');
-              },
+            TextFormField(
+              decoration: const InputDecoration(
+                icon: Icon(Icons.category),
+                hintText: 'Type of Transaction',
+                labelText: 'Category *',
+              ),
             ),
-            TextField(
-              controller: myController,
+            TextFormField(
+              decoration: const InputDecoration(
+                icon: Icon(Icons.money),
+                hintText: 'Cost (\$)',
+                labelText: 'Amount *',
+              ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: ElevatedButton(onPressed: () {}, child: const Text('Submit')),
+            )
+            ],
+        ),
+      ),
+    );
+  }
+}
+
+class Balance extends StatefulWidget {
+  const Balance({super.key});
+
+  @override
+  State<Balance> createState() => _BalanceState();
+}
+
+class _BalanceState extends State<Balance> {
+  // Create a text controller and use it to retrieve the current value
+  // of the TextField.
+  final myController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Start listening to changes.
+    myController.addListener(_printLatestValue);
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the widget tree.
+    // This also removes the _printLatestValue listener.
+    myController.dispose();
+    super.dispose();
+  }
+
+  void _printLatestValue() {
+    final text = myController.text;
+    print('Second text field: $text (${text.characters.length})');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Accounts'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () => {},
+        tooltip: 'Add new item',
+        child: const Icon(Icons.add),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: const InputDecoration(
+                icon: Icon(Icons.account_balance),
+                hintText: 'Amount of money in bank',
+                labelText: 'Bank *',
+              ),
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                icon: Icon(Icons.money),
+                hintText: 'Cost (\$)',
+                labelText: 'Amount *',
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: ElevatedButton(onPressed: () {}, child: const Text('Submit')),
+            )
           ],
         ),
       ),
