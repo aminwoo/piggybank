@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_simple_calculator/flutter_simple_calculator.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const MyApp());
+}
+
+enum Category {
+  income('Income', Icons.attach_money_rounded),
+  food('Food', Icons.fastfood_rounded),
+  groceries('Groceries', Icons.local_grocery_store_outlined),
+  utilities('Utilities', Icons.bike_scooter),
+  entertainment('Entertainment', Icons.music_note);
+
+  const Category(this.label, this.icon);
+  final String label;
+  final IconData icon;
 }
 
 class MyApp extends StatelessWidget {
@@ -129,19 +141,29 @@ class _TransactionFormState extends State<TransactionForm> {
                 labelText: 'Amount *',
               ),
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                icon: Icon(Icons.date_range),
-                hintText: 'Cost (\$)',
-                labelText: 'Date',
-              ),
+            DropdownButtonFormField(
+              items: Category.values.map((Category category) {
+                return DropdownMenuItem(
+                    value: category.label,
+                    child: Row(
+                      children: <Widget>[
+                        Icon(category.icon),
+                        Padding(padding: const EdgeInsets.symmetric(horizontal: 10), child: Text(category.label)),
+                      ],
+                    )
+                );
+                }).toList(),
+                onChanged: (newValue) {
+                  print(newValue);
+                },
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.category),
+                  labelText: 'Category',
+                ),
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                icon: Icon(Icons.category),
-                hintText: 'Type of Transaction',
-                labelText: 'Category',
-              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: InputDatePickerFormField(fieldLabelText: 'Date', firstDate: DateTime(2015, 8), lastDate: DateTime(2015, 8), ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
