@@ -117,16 +117,30 @@ class _TransactionFormState extends State<TransactionForm> {
           children: [
             TextFormField(
               decoration: const InputDecoration(
-                icon: Icon(Icons.category),
-                hintText: 'Type of Transaction',
-                labelText: 'Category *',
+                icon: Icon(Icons.account_balance_rounded),
+                hintText: 'Account Name',
+                labelText: 'Account *',
               ),
             ),
             TextFormField(
               decoration: const InputDecoration(
-                icon: Icon(Icons.money),
+                icon: Icon(Icons.attach_money_rounded),
                 hintText: 'Cost (\$)',
                 labelText: 'Amount *',
+              ),
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                icon: Icon(Icons.date_range),
+                hintText: 'Cost (\$)',w
+                labelText: 'Date',
+              ),
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                icon: Icon(Icons.category),
+                hintText: 'Type of Transaction',
+                labelText: 'Category',
               ),
             ),
             Padding(
