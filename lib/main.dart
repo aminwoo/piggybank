@@ -132,7 +132,7 @@ class _TransactionFormState extends State<TransactionForm> {
             TextFormField(
               decoration: const InputDecoration(
                 icon: Icon(Icons.date_range),
-                hintText: 'Cost (\$)',w
+                hintText: 'Cost (\$)',
                 labelText: 'Date',
               ),
             ),
