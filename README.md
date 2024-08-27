@@ -1,6 +1,6 @@
-# project
+# PiggyBank
 
-A new Flutter project.
+Financial App that lets users track finances such as spending, investments etc.
 
 ## Getting Started
 
