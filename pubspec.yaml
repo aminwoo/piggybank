@@ -30,12 +30,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_simple_calculator:
-  intl:
+  firebase_auth: ^5.1.4
+  cloud_firestore: ^5.2.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  firebase_core: ^3.3.0
+  fl_chart: ^0.69.0
+  flutter_svg: ^1.0.0
+  provider: ^6.1.2
+  yahoo_finance_data_reader: ^1.0.7
+  dio: ^5.6.0
+  forex_conversion: ^0.2.5+1
 
 dev_dependencies:
   flutter_test:
@@ -46,7 +53,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -63,6 +70,17 @@ flutter:
   assets:
     - assets/images/stonks.png
     - assets/images/piggy.png
+    - assets/icons/apple-svgrepo-com.svg
+    - assets/icons/dollar-banknote-svgrepo-com.svg
+    - assets/icons/joystick-game-controller-svgrepo-com.svg
+    - assets/icons/worker-svgrepo-com.svg
+    - assets/icons/money-bag-svgrepo-com.svg
+    - assets/icons/suit-svgrepo-com.svg
+    - assets/icons/can-delete-remove-svgrepo-com.svg
+    - assets/icons/erase-svgrepo-com.svg
+    - assets/icons/write-svgrepo-com.svg
+    - assets/logos/facebook.jpg
+    - assets/logos/google.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
